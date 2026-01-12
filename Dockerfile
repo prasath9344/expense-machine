@@ -3,13 +3,11 @@ FROM node:20-alpine
 WORKDIR /app
 
 COPY package*.json ./
-RUN npm ci
+
+RUN npm ci --omit=dev
 
 COPY . .
 
-# Build TypeScript
-RUN npm run build
-
 EXPOSE 5173
 
-CMD ["node", "dist/index.js"]
+CMD ["npm", "start"]
